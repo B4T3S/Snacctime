@@ -15,35 +15,35 @@
 ## Database Layout
 ```mermaid
 erDiagram
-    USER ||--o{ ORDER : starts
-    ORDER ||--|{ ARTICLE_IN_ORDER : has
-    ARTICLE_IN_ORDER ||--|| ARTICLE : has
-    CATEGORY ||--|{ ARTICLE : contains
+    User ||--o{ Order : starts
+    Order ||--|{ ArticleInOrder : has
+    ArticleInOrder ||--|| Article : has
+    Category ||--|{ Article : contains
 
-    USER {
+    User {
         string email
         string name
         file avatar
     }
 
-    ORDER {
+    Order {
         user creator
         bool completed
     }
 
-    ARTICLE {
+    Article {
         string name
         float price
         file image
     }
 
-    ARTICLE_IN_ORDER {
+    ArticleInOrder {
         int quantity
         int quantity_done
         string note
     }
 
-    CATEGORY {
+    Category {
         string name
     }
 ```
