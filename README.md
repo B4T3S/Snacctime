@@ -16,7 +16,6 @@
 ```mermaid
 erDiagram
     USER ||--o{ ORDER : starts
-    USER }o--|| ARTICLE_IN_ORDER : adds
     ORDER ||--|{ ARTICLE_IN_ORDER : has
     ARTICLE_IN_ORDER ||--|| ARTICLE : has
     CATEGORY ||--|{ ARTICLE : contains
