@@ -18,6 +18,7 @@ erDiagram
     User ||--o{ Order : starts
     Order ||--|{ ArticleInOrder : has
     ArticleInOrder ||--|| Article : has
+    Article ||--o{ Tag : has
     Category ||--|{ Article : contains
 
     User {
@@ -44,6 +45,10 @@ erDiagram
     }
 
     Category {
+        string name
+    }
+
+    Tag {
         string name
     }
 ```
