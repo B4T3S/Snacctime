@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 
 export const routes: Routes = [
   {
@@ -7,8 +8,14 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'folder/:id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./dashboard/dashboard.page').then( m => m.DashboardPage),
+    canActivate: [IsLoggedInGuard]
+  },
+
+
 ];
