@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular/standalone';
+import { ViewWillEnter } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { LoadingController } from '@ionic/angular/standalone';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class LoginPage {
+export class LoginPage implements ViewWillEnter {
   userService: UserService = inject(UserService);
   router: Router = inject(Router);
   loadingController: LoadingController = inject(LoadingController);
@@ -26,6 +27,12 @@ export class LoginPage {
     if (this.userService.IsLoggedIn) {
       this.router.navigate(['/dashboard']);
     }
+  }
+
+  ionViewWillEnter(): void {
+    this.username = "";
+    this.password = "";
+    this.errorText = "";
   }
 
   public async login() {
