@@ -1,23 +1,33 @@
-import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { UserService } from '../services/user.service';
+import { Injectable, inject } from '@angular/core'
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router'
+import { Observable } from 'rxjs'
+import { UserService } from '../services/user/user.service'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IsLoggedInGuard implements CanActivate {
-  userService = inject(UserService);
-  router = inject(Router);
+  userService = inject(UserService)
+  router = inject(Router)
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.userService.IsLoggedIn) { 
-        return true;
-      } else { 
-        return this.router.parseUrl('/login');
-      }
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    if (this.userService.IsLoggedIn) {
+      return true
+    } else {
+      return this.router.parseUrl('/login')
+    }
   }
-  
 }

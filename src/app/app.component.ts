@@ -19,7 +19,7 @@ import {
 } from '@ionic/angular/standalone'
 import { addIcons } from 'ionicons'
 import * as ionIcons from 'ionicons/icons'
-import { UserService } from './services/user.service'
+import { UserService } from './services/user/user.service'
 
 @Component({
   selector: 'app-root',
