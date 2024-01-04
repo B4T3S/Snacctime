@@ -1,42 +1,48 @@
-import { Injectable } from '@angular/core';
-import PocketBase from 'pocketbase';
-
+import { inject, Injectable } from '@angular/core'
+import { ApiService } from './api.service'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  pb: PocketBase;
+  apiService: ApiService
 
   constructor() {
-    this.pb = new PocketBase('https://pocketbase.b4t.es');
+    this.apiService = inject(ApiService)
   }
 
   public get IsLoggedIn(): boolean {
-    return this.pb.authStore.isValid;
+    return this.apiService.pb.authStore.isValid
   }
 
   public get Username(): string {
-    if (!this.IsLoggedIn) return "<NOT LOGGED IN>";
-    if (this.pb.authStore.model?.['name']) return this.pb.authStore.model?.['name'];
-    return this.pb.authStore.model?.['username'];
+    if (!this.IsLoggedIn) return '<NOT LOGGED IN>'
+    if (this.apiService.pb.authStore.model?.['name'])
+      return this.apiService.pb.authStore.model?.['name']
+    return this.apiService.pb.authStore.model?.['username']
   }
 
   public get Avatar(): string {
-    const avatar = this.pb.authStore.model?.['avatar'];
-    if (!this.IsLoggedIn || !avatar) return "https://ionicframework.com/docs/img/demos/avatar.svg";
-    const url = "https://pocketbase.b4t.es/api/files/users/" + this.pb.authStore.model?.['id'] + "/" + avatar;
-    return url;
+    const avatar = this.apiService.pb.authStore.model?.['avatar']
+    if (!this.IsLoggedIn || !avatar)
+      return 'https://ionicframework.com/docs/img/demos/avatar.svg'
+    const url =
+      'https://pocketbase.b4t.es/api/files/users/' +
+      this.apiService.pb.authStore.model?.['id'] +
+      '/' +
+      avatar
+    return url
   }
 
   public async login(username: string, password: string): Promise<boolean> {
-    await this.pb.collection('users').authWithPassword(username, password);
+    await this.apiService.pb
+      .collection('users')
+      .authWithPassword(username, password)
 
-    return this.IsLoggedIn;
+    return this.IsLoggedIn
   }
 
   public logout() {
-    this.pb.authStore.clear();
+    this.apiService.pb.authStore.clear()
   }
 }
