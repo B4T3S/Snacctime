@@ -4,7 +4,7 @@ import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/inbox',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
