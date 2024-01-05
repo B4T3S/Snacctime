@@ -10,18 +10,23 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./pages/login/login.page').then((m) => m.LoginPage),
+      import('./pages/login/login.page').then(m => m.LoginPage),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./pages/register/register.page').then(m => m.RegisterPage),
   },
   {
     path: 'dashboard',
     loadComponent: () =>
-      import('./pages/dashboard/dashboard.page').then((m) => m.DashboardPage),
+      import('./pages/dashboard/dashboard.page').then(m => m.DashboardPage),
     canActivate: [IsLoggedInGuard],
   },
   {
     path: 'items',
     loadComponent: () =>
-      import('./pages/items/items.page').then((m) => m.ItemsPage),
+      import('./pages/items/items.page').then(m => m.ItemsPage),
     canActivate: [IsLoggedInGuard],
   },
 ]

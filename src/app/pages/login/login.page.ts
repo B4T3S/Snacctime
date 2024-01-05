@@ -17,7 +17,7 @@ import { ViewWillEnter } from '@ionic/angular/standalone'
 export class LoginPage implements ViewWillEnter {
   userService: UserService
   router: Router
-  loadingController: LoadingController = inject(LoadingController)
+  loadingController: LoadingController
 
   username: string = ''
   password: string = ''
@@ -26,6 +26,8 @@ export class LoginPage implements ViewWillEnter {
   constructor() {
     this.userService = inject(UserService)
     this.router = inject(Router)
+    this.loadingController = inject(LoadingController)
+
     if (this.userService.IsLoggedIn) {
       this.router.navigate(['/dashboard'])
     }
@@ -49,5 +51,9 @@ export class LoginPage implements ViewWillEnter {
     } finally {
       loader.dismiss()
     }
+  }
+
+  public async register() {
+    await this.router.navigate(['/register'])
   }
 }

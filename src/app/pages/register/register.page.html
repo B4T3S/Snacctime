@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,9 +13,10 @@
       <ion-col sizeMd="5">
         <ion-item class="ion-margin-bottom">
           <ion-input
-            label="Username/Email"
+            label="Email"
             labelPlacement="floating"
-            [(ngModel)]="username"
+            type="email"
+            [(ngModel)]="email"
           ></ion-input>
         </ion-item>
         <ion-item class="ion-margin-bottom">
@@ -26,14 +27,25 @@
             [(ngModel)]="password"
           ></ion-input>
         </ion-item>
+        <ion-item class="ion-margin-bottom">
+          <ion-input
+            label="Repeat Password"
+            labelPlacement="floating"
+            type="password"
+            [(ngModel)]="passwordRepeat"
+          ></ion-input>
+        </ion-item>
         <ion-item class="ion-margin-bottom" *ngIf="errorText" color="danger">
           {{ errorText }}
         </ion-item>
-        <ion-button class="ion-margin-bottom" expand="block" (click)="login()"
-          >Login</ion-button
+        <ion-button
+          class="ion-margin-bottom"
+          expand="block"
+          (click)="register()"
+          >Register</ion-button
         >
-        <ion-button expand="block" (click)="register()" color="primary">
-          Don't have an account? Create one!</ion-button
+        <ion-button expand="block" (click)="login()" color="primary">
+          Already have an account? Log in!</ion-button
         >
       </ion-col>
     </ion-row>
