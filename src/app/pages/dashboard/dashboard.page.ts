@@ -19,23 +19,23 @@ export class DashboardPage {
 
   userService: UserService
   orderService: OrderService
-  
-  orders: Array<RecordModel> = new Array();
+
+  orders: Array<RecordModel> = new Array()
 
   constructor() {
-    this.router = inject(Router);
+    this.router = inject(Router)
 
-    this.userService = inject(UserService);
-    this.orderService = inject(OrderService);
+    this.userService = inject(UserService)
+    this.orderService = inject(OrderService)
 
-    this.orderService.fetchAll().then((result) => {
-      this.orders = result;
-      console.log("result:", result);
+    this.orderService.fetchAll().then(result => {
+      this.orders = result
+      console.log('result:', result)
     })
   }
 
   async newOrder(): Promise<void> {
-    await this.orderService.create();
+    await this.orderService.create()
   }
 
   getDate(dateString: string): string {
@@ -43,6 +43,7 @@ export class DashboardPage {
   }
 
   async openOrder(order: RecordModel): Promise<void> {
-    await this.router.navigate(['/order', order['collectionId']]);
+    console.log('Opening ', order)
+    await this.router.navigate(['/order', order['id']])
   }
 }

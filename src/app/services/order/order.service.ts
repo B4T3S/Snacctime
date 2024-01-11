@@ -1,12 +1,12 @@
-import { Injectable, inject } from '@angular/core';
-import { ApiService } from '../api/api.service';
-import { UserService } from '../user/user.service';
-import { LoadingController } from '@ionic/angular';
-import { RecordModel } from 'pocketbase';
-import { ToastController } from '@ionic/angular/standalone';
+import { Injectable, inject } from '@angular/core'
+import { ApiService } from '../api/api.service'
+import { UserService } from '../user/user.service'
+import { LoadingController } from '@ionic/angular'
+import { RecordModel } from 'pocketbase'
+import { ToastController } from '@ionic/angular/standalone'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService {
   private apiService: ApiService
@@ -23,38 +23,50 @@ export class OrderService {
   }
 
   public async fetchAll(): Promise<RecordModel[]> {
-    var items: RecordModel[] = new Array();
+    var items: RecordModel[] = new Array()
 
     try {
-      items = (await this.apiService.pb.collection('orders').getFullList({
-        'expand': 'creator'
-      }))
+      items = await this.apiService.pb.collection('orders').getFullList({
+        expand: 'creator',
+      })
     } catch (ex) {
-      console.error("Failed to fetch Orders!", ex)
+      console.error('Failed to fetch Orders!', ex)
       this.toastController.create({
         header: 'Error!',
         message: 'Failed to fetch Orders!',
         color: 'danger',
-        duration: 3000
+        duration: 3000,
       })
     }
 
-    return items;
+    return items
+  }
+
+  public async fetch(id: string) {
+    try {
+      return await this.apiService.pb.collection('orders').getOne(id, {
+        expand: 'creator',
+      })
+    } catch (ex) {
+      console.error(`Error fetching order (${id})`, ex)
+    }
+
+    return undefined
   }
 
   public async create(): Promise<void> {
     const data = {
-      "creator": this.userService.Id,
-      "completed": false
-    };
+      creator: this.userService.Id,
+      completed: false,
+    }
 
     const loader = await this.loadingController.create()
 
     try {
-      await this.apiService.pb.collection('orders').create(data);
-      console.info("Created new order");
+      await this.apiService.pb.collection('orders').create(data)
+      console.info('Created new order')
     } catch (ex) {
-      console.error("Failed to create new order", ex);
+      console.error('Failed to create new order', ex)
     } finally {
       loader.dismiss()
     }
