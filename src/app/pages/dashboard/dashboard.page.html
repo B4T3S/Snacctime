@@ -18,7 +18,7 @@
         </ion-avatar>
         <ion-label>{{ userService.Username }}</ion-label>
       </ion-item>
-      <ion-button>
+      <ion-button (click)="newOrder()">
         <ion-icon name="add-outline"></ion-icon>
         New order
       </ion-button>
@@ -29,5 +29,15 @@
     <ion-card-header>
       <ion-card-title> Open orders </ion-card-title>
     </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let item of orders;" (click)="openOrder(item)" detail="true">
+          <label>{{ item['expand']?.['creator']?.['name'] }}</label>
+          <ion-badge slot="end">
+            {{ getDate(item['created']) }}
+          </ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
   </ion-card>
 </ion-content>

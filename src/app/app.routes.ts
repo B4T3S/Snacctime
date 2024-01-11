@@ -29,4 +29,9 @@ export const routes: Routes = [
       import('./pages/items/items.page').then(m => m.ItemsPage),
     canActivate: [IsLoggedInGuard],
   },
+  {
+    path: 'order/:id',
+    loadComponent: () => import('./pages/order/order.page').then( m => m.OrderPage),
+    canActivate: [IsLoggedInGuard],
+  },
 ]

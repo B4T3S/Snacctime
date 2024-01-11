@@ -34,6 +34,11 @@ export class UserService {
     return url
   }
 
+  public get Id(): string|null {
+    if (!this.IsLoggedIn) return null;
+    return this.apiService.pb.authStore.model?.['id'];
+  }
+
   public async login(username: string, password: string): Promise<boolean> {
     await this.apiService.pb
       .collection('users')
