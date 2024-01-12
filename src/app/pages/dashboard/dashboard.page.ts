@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
-import { IonicModule } from '@ionic/angular'
+import { IonicModule, ViewWillEnter } from '@ionic/angular'
 import { UserService } from '../../services/user/user.service'
 import { OrderService } from 'src/app/services/order/order.service'
 import { RecordModel } from 'pocketbase'
@@ -14,25 +14,34 @@ import { Router } from '@angular/router'
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule],
 })
-export class DashboardPage {
+export class DashboardPage implements ViewWillEnter {
   router: Router
 
   userService: UserService
   orderService: OrderService
 
   orders: Array<RecordModel> = new Array()
+  ordersLoading: boolean = true
 
   constructor() {
     this.router = inject(Router)
 
     this.userService = inject(UserService)
     this.orderService = inject(OrderService)
-
-    this.orderService.fetchAll().then(result => {
-      this.orders = result
-      console.log('result:', result)
-    })
   }
+
+  async ionViewWillEnter() {
+    await this.loadOrders()
+  }
+
+  async loadOrders(event: any = undefined): Promise<void> {
+    this.ordersLoading = true
+    this.orders = await this.orderService.fetchAll()
+    this.ordersLoading = false
+    event?.target?.complete()
+  }
+
+  async hideLoader(): Promise<void> {}
 
   async newOrder(): Promise<void> {
     await this.orderService.create()
