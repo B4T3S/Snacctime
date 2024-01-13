@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package es.b4t.snacctime;
 
 import com.getcapacitor.BridgeActivity;
 
