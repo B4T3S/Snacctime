@@ -1,18 +1,42 @@
 import { Component, OnInit, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
-import { IonicModule } from '@ionic/angular'
 import { UserService } from '../../services/user/user.service'
 import { Router } from '@angular/router'
-import { LoadingController } from '@ionic/angular/standalone'
-import { ViewWillEnter } from '@ionic/angular/standalone'
+import {
+  ViewWillEnter,
+  LoadingController,
+  IonHeader,
+  IonContent,
+  IonToolbar,
+  IonTitle,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonItem,
+  IonInput,
+  IonButton,
+} from '@ionic/angular/standalone'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonHeader,
+    IonContent,
+    IonToolbar,
+    IonTitle,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonItem,
+    IonInput,
+    IonButton,
+  ],
 })
 export class LoginPage implements ViewWillEnter {
   userService: UserService
@@ -29,7 +53,7 @@ export class LoginPage implements ViewWillEnter {
     this.loadingController = inject(LoadingController)
 
     if (this.userService.IsLoggedIn) {
-      this.router.navigate(['/dashboard'])
+      this.router.navigate(['/tabs/orders'])
     }
   }
 
@@ -44,7 +68,7 @@ export class LoginPage implements ViewWillEnter {
     loader.present()
     try {
       if (await this.userService.login(this.username, this.password)) {
-        await this.router.navigate(['/dashboard'])
+        await this.router.navigate(['/tabs/orders'])
       }
     } catch (ex) {
       this.errorText = 'Login failed! Wrong username/password?'
@@ -54,6 +78,6 @@ export class LoginPage implements ViewWillEnter {
   }
 
   public async register() {
-    await this.router.navigate(['/register'])
+    // TODO: Create modal for registration
   }
 }

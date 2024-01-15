@@ -10,7 +10,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./pages/login/login.page').then(m => m.LoginPage),
+      import('../../src/app/pages/login/login.page').then(m => m.LoginPage),
   },
   {
     path: 'register',
@@ -31,7 +31,8 @@ export const routes: Routes = [
   },
   {
     path: 'order/:id',
-    loadComponent: () => import('./pages/order/order.page').then( m => m.OrderPage),
+    loadComponent: () =>
+      import('./pages/order/order.page').then(m => m.OrderPage),
     canActivate: [IsLoggedInGuard],
   },
 ]

@@ -1,14 +1,17 @@
 import { inject, Injectable } from '@angular/core'
 import { ApiService } from '../api/api.service'
+import { Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   apiService: ApiService
+  router: Router
 
   constructor() {
     this.apiService = inject(ApiService)
+    this.router = inject(Router)
   }
 
   public get IsLoggedIn(): boolean {
@@ -34,9 +37,14 @@ export class UserService {
     return url
   }
 
-  public get Id(): string|null {
-    if (!this.IsLoggedIn) return null;
-    return this.apiService.pb.authStore.model?.['id'];
+  public get Id(): string | null {
+    if (!this.IsLoggedIn) return null
+    return this.apiService.pb.authStore.model?.['id']
+  }
+
+  public get Email(): string | null {
+    if (!this.IsLoggedIn) return null
+    return this.apiService.pb.authStore.model?.['email']
   }
 
   public async login(username: string, password: string): Promise<boolean> {
@@ -49,5 +57,6 @@ export class UserService {
 
   public logout() {
     this.apiService.pb.authStore.clear()
+    this.router.navigate(['/login'])
   }
 }
