@@ -9,23 +9,28 @@ import {
   ViewDidEnter,
   ViewWillLeave,
 } from '@ionic/angular/standalone'
-import { addIcons } from 'ionicons'
-import { triangle, ellipse, square } from 'ionicons/icons'
 import { Subscription } from 'rxjs'
+import { Device } from '@capacitor/device'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
   standalone: true,
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule],
 })
 export class TabsPage implements ViewDidEnter, ViewWillLeave {
   public environmentInjector = inject(EnvironmentInjector)
   private platform: Platform = inject(Platform)
   private subscription: Subscription | undefined = undefined
+  protected isIos: boolean = false
 
-  constructor() {}
+  constructor() {
+    Device.getInfo().then(info => {
+      this.isIos = info.operatingSystem === 'ios'
+    })
+  }
 
   // This section disables the back button for the entire app.
   ionViewDidEnter() {
