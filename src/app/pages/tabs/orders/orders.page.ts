@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, ViewChild, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import {
   IonHeader,
@@ -23,10 +23,13 @@ import {
   IonBadge,
   IonSkeletonText,
   ViewWillEnter,
+  IonProgressBar,
 } from '@ionic/angular/standalone'
 import { RecordModel } from 'pocketbase'
 import { OrderService } from 'src/app/services/order/order.service'
 import { UserService } from 'src/app/services/user/user.service'
+import { ModalController } from '@ionic/angular/standalone'
+import { OrderModalComponent } from 'src/app/components/order-modal/order-modal.component'
 
 @Component({
   selector: 'app-orders',
@@ -55,12 +58,16 @@ import { UserService } from 'src/app/services/user/user.service'
     IonList,
     IonBadge,
     IonSkeletonText,
+    IonProgressBar,
     CommonModule,
   ],
 })
 export class OrdersPage implements ViewWillEnter {
+  @ViewChild(IonContent) ionContent!: HTMLElement
+
   orderService: OrderService
   userService: UserService
+  modalController: ModalController
 
   orders: Array<RecordModel> = new Array()
   ordersLoading: boolean = true
@@ -68,6 +75,7 @@ export class OrdersPage implements ViewWillEnter {
   constructor() {
     this.orderService = inject(OrderService)
     this.userService = inject(UserService)
+    this.modalController = inject(ModalController)
   }
 
   async ionViewWillEnter() {
@@ -86,8 +94,13 @@ export class OrdersPage implements ViewWillEnter {
   }
 
   async openOrder(order: RecordModel): Promise<void> {
-    console.log('Opening ', order)
-    // await this.router.navigate(['/order', order['id']])
+    const modal = await this.modalController.create({
+      component: OrderModalComponent,
+      componentProps: { orderId: order['id'] },
+      presentingElement: this.ionContent,
+    })
+
+    await modal.present()
   }
 
   getDate(dateString: string): string {

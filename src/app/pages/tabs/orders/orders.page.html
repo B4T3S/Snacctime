@@ -5,12 +5,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Orders</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-refresher slot="fixed" (ionRefresh)="loadOrders($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

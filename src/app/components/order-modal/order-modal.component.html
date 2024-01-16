@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Order</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+    <ion-progress-bar
+      *ngIf="order === undefined"
+      type="indeterminate"
+    ></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label>{{ order?.['id'] }}</ion-label>
+  </ion-item>
+</ion-content>
