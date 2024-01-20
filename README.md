@@ -4,10 +4,11 @@
 - [x] Set up PocketBase
 - [x] Create basic database layout (might need some tweaks)
 - [ ] Create tables in PocketBase
-- [ ] Setup login and user creation
+- [x] Setup login
+- [ ] Setup user creation
 - [ ] Setup CI/CD for android builds
 - [ ] Setup basic app functionality
-    - [ ] Create orders
+    - [x] Create orders
     - [ ] Add articles to orders
     - [ ] Complete Orders
 - [ ] Release V1 :tada:
@@ -16,6 +17,7 @@
 ```mermaid
 erDiagram
     User ||--o{ Order : starts
+    User ||--|| Group : has
     Order ||--|{ ArticleInOrder : has
     ArticleInOrder ||--|| Article : has
     Article ||--o{ Tag : has
@@ -25,6 +27,12 @@ erDiagram
         string email
         string name
         file avatar
+    }
+
+    Group {
+        string name
+        file icon
+        bool public
     }
 
     Order {
