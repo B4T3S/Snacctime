@@ -61,6 +61,7 @@ export class OrderService {
     }
 
     const loader = await this.loadingController.create()
+    await loader.present()
 
     try {
       await this.apiService.pb.collection('orders').create(data)
@@ -68,7 +69,23 @@ export class OrderService {
     } catch (ex) {
       console.error('Failed to create new order', ex)
     } finally {
-      loader.dismiss()
+      await loader.dismiss()
+    }
+  }
+
+  public async deactivate(recordID: string): Promise<void> {
+    const data = {
+      completed: true,
+    }
+
+    const loader = await this.loadingController.create()
+    await loader.present()
+
+    try {
+      await this.apiService.pb.collection('orders').update(recordID, data)
+    } catch (ex) {
+    } finally {
+      await loader.dismiss()
     }
   }
 }

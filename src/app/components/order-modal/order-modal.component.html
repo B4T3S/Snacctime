@@ -7,14 +7,57 @@
     <ion-buttons slot="end">
       <ion-button [strong]="true">Confirm</ion-button>
     </ion-buttons>
-    <ion-progress-bar
-      *ngIf="order === undefined"
-      type="indeterminate"
-    ></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-label>{{ order?.['id'] }}</ion-label>
-  </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title *ngIf="order">
+        {{ order['expand']?.['creator']?.['name'] }}'s Order
+      </ion-card-title>
+      <ion-card-title *ngIf="!order">
+        <ion-skeleton-text animated="true"></ion-skeleton-text>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item lines="full">
+        <ion-icon name="cash" slot="start"></ion-icon>
+        <ion-label> Total </ion-label>
+        <ion-note *ngIf="totalPrice" slot="end">
+          {{ totalPrice.toFixed(2) }}€
+        </ion-note>
+        <ion-note *ngIf="!totalPrice" slot="end">
+          <ion-skeleton-text
+            animated="true"
+            style="width: 7vw"
+          ></ion-skeleton-text>
+        </ion-note>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-icon name="calendar" slot="start"></ion-icon>
+        <ion-label> Date </ion-label>
+        <ion-note *ngIf="order" slot="end">
+          {{ getDate(order['created']) }}
+        </ion-note>
+        <ion-note *ngIf="!order" slot="end">
+          <ion-skeleton-text
+            animated="true"
+            style="width: 20vw"
+          ></ion-skeleton-text>
+        </ion-note>
+      </ion-item>
+    </ion-card-content>
+
+    <ion-item>
+      <ion-button
+        color="danger"
+        slot="end"
+        [disabled]="order?.['expand']?.['creator']?.['id'] !== this.userService.Id"
+        (click)="deactivateOrder()"
+      >
+        <ion-icon name="ban"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-card>
 </ion-content>
