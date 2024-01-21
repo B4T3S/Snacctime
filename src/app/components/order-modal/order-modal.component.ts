@@ -71,7 +71,8 @@ export class OrderModalComponent implements OnInit {
 
   async deactivateOrder(): Promise<void> {
     if (this.order) {
-      await this.orderService.deactivate(this.order['collectionId'])
+      await this.orderService.deactivate(this.order['id'])
+      await this.modalController.dismiss(null, 'reload')
     }
   }
 

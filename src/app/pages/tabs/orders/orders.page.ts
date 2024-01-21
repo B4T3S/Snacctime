@@ -91,6 +91,7 @@ export class OrdersPage implements ViewWillEnter {
 
   async newOrder(): Promise<void> {
     await this.orderService.create()
+    await this.loadOrders()
   }
 
   async openOrder(order: RecordModel): Promise<void> {
@@ -101,6 +102,11 @@ export class OrdersPage implements ViewWillEnter {
     })
 
     await modal.present()
+
+    const { data, role } = await modal.onWillDismiss()
+    if (role === 'reload') {
+      await this.loadOrders()
+    }
   }
 
   getDate(dateString: string): string {

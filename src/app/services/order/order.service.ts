@@ -28,6 +28,7 @@ export class OrderService {
     try {
       items = await this.apiService.pb.collection('orders').getFullList({
         expand: 'creator',
+        filter: 'completed=false',
       })
     } catch (ex) {
       console.error('Failed to fetch Orders!', ex)
