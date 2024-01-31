@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Add Item(s)</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-card *ngFor="let cat of categories">
+    <ion-card-header>
+      <ion-card-title> {{ cat['name'] }} </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ng-container *ngFor="let item of items">
+          <ion-item
+            *ngIf="item['category'] === cat['id']"
+            (click)="addItem(item)"
+          >
+            <ion-thumbnail slot="start">
+              <img alt="Item image" src="" />
+            </ion-thumbnail>
+            {{ item['name'] }}
+            <ion-note slot="end">{{
+              item['price'] > 0 ? item['price'].toFixed(2) + '€' : 'Free'
+            }}</ion-note>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

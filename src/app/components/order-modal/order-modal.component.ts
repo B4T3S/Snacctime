@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core'
+import { Component, OnInit, ViewChild, inject } from '@angular/core'
 import {
   IonHeader,
   IonToolbar,
@@ -18,11 +18,14 @@ import {
   IonIcon,
   IonNote,
   IonSkeletonText,
+  IonFab,
+  IonFabButton,
 } from '@ionic/angular/standalone'
 import { RecordModel } from 'pocketbase'
 import { OrderService } from 'src/app/services/order/order.service'
 import { CommonModule } from '@angular/common'
 import { UserService } from 'src/app/services/user/user.service'
+import { ItemsModalComponent } from '../items-modal/items-modal.component'
 
 @Component({
   selector: 'app-order-modal',
@@ -47,10 +50,14 @@ import { UserService } from 'src/app/services/user/user.service'
     IonCardContent,
     IonIcon,
     IonSkeletonText,
+    IonFab,
+    IonFabButton,
     CommonModule,
   ],
 })
 export class OrderModalComponent implements OnInit {
+  @ViewChild(IonContent) ionContent!: HTMLElement
+
   private modalController: ModalController
   private orderId!: string
   private orderService: OrderService
@@ -74,6 +81,15 @@ export class OrderModalComponent implements OnInit {
       await this.orderService.deactivate(this.order['id'])
       await this.modalController.dismiss(null, 'reload')
     }
+  }
+
+  async addItems() {
+    const itemsModal = await this.modalController.create({
+      component: ItemsModalComponent,
+      presentingElement: this.ionContent,
+    })
+
+    await itemsModal.present()
   }
 
   getDate(dateString: string | undefined): string {

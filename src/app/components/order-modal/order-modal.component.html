@@ -4,9 +4,6 @@
       <ion-button (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
     <ion-title>Order</ion-title>
-    <ion-buttons slot="end">
-      <ion-button [strong]="true">Confirm</ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
@@ -60,4 +57,9 @@
       </ion-button>
     </ion-item>
   </ion-card>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="addItems()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

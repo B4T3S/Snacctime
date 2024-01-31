@@ -18,13 +18,13 @@
     <ion-card-content>
       <ion-list>
         <ng-container *ngFor="let item of items;">
-          <ion-item *ngIf="item['category'] === cat['id']">
+          <ion-item *ngIf="item.category === cat['id']">
             <ion-thumbnail slot="start">
-              <img alt="Item image" src="" />
+              <img alt="Image" src="" />
             </ion-thumbnail>
-            {{ item['name'] }}
+            {{ item.name }}
             <ion-note slot="end"
-              >{{ item['price'] > 0 ? item['price'].toFixed(2) + "€" : "Free"
+              >{{ item.price > 0 ? item.price.toFixed(2) + "€" : "Free"
               }}</ion-note
             >
           </ion-item>

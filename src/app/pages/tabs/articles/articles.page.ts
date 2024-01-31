@@ -16,6 +16,7 @@ import {
 } from '@ionic/angular/standalone'
 import { ItemService } from 'src/app/services/item/item.service'
 import { RecordModel } from 'pocketbase'
+import { ItemDto } from 'src/app/dto/item/item-dto'
 
 @Component({
   selector: 'app-articles',
@@ -44,7 +45,7 @@ export class ArticlesPage {
 
   // Local variables
   protected categories: Array<RecordModel> | undefined
-  protected items: Array<RecordModel> | undefined
+  protected items: Array<ItemDto> | undefined
 
   constructor() {
     this.itemService = inject(ItemService)
