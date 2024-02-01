@@ -3,7 +3,7 @@
 ## Roadmap
 - [x] Set up PocketBase
 - [x] Create basic database layout (might need some tweaks)
-- [ ] Create tables in PocketBase
+- [x] Create tables in PocketBase
 - [x] Setup login
 - [ ] Setup user creation
 - [ ] Setup CI/CD for android builds
@@ -12,6 +12,9 @@
     - [ ] Add articles to orders
     - [ ] Complete Orders
 - [ ] Release V1 :tada:
+
+- [ ] Add Grouping system
+- [ ] Add Room information
 
 ## Database Layout
 ```mermaid
