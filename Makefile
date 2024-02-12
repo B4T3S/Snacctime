@@ -30,6 +30,14 @@ help: ## (Default) Print listing of key targets with their descriptions.
 			printf "   \033[92m%-20s\033[0m \033[90m%s\033[0m\n", $$1, $$2; \
 	}'
 
+## Docker targets
+.PHONY: start
+start: ## Start all docker containers
+	docker compose -f ./docker/docker-compose.yaml up -d
+.PHONY: stop
+stop: ## Start all docker containers
+	docker compose -f ./docker/docker-compose.yaml down
+
 ## NPM targets
 .PHONY: install
 install: ## Install vendors according to the current composer.lock file

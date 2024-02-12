@@ -83,4 +83,10 @@ UserInterfaceState.xcuserstate
 .history
 .ionide
 
+### Docker
+docker/*
+!docker/.env
+!docker/docker-compose.yaml
+!docker/Dockerfile
+
 # End of https://www.toptal.com/developers/gitignore/api/ionic3,angular,visualstudiocode

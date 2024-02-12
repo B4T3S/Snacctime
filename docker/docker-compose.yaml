@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  api:
+    image: snacctime/pocketbase
+    container_name: pocketbase
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./pb_data:/pb/pb_data
+    ports:
+      - 0815:8080
