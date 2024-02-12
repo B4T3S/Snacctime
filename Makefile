@@ -31,11 +31,11 @@ help: ## (Default) Print listing of key targets with their descriptions.
 	}'
 
 ## Docker targets
-.PHONY: start
-start: ## Start all docker containers
+.PHONY: docker-start
+docker-start: ## Start all docker containers
 	docker compose -f ./docker/docker-compose.yaml up -d
-.PHONY: stop
-stop: ## Start all docker containers
+.PHONY: docker-stop
+docker-stop: ## Start all docker containers
 	docker compose -f ./docker/docker-compose.yaml down
 
 ## NPM targets
@@ -46,5 +46,9 @@ install: ## Install vendors according to the current composer.lock file
 .PHONY: update
 update: ## Update vendors according to the current composer.json file
 	npm update
+
+.PHONY: start
+start: docker-start ## Start app
+	npm run start
 
 # vim: syntax=make

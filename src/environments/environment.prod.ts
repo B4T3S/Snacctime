@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  pocketBaseUrl: 'https://pocketbase.b4t.es'
 };
