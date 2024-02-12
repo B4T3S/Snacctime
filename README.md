@@ -5,6 +5,23 @@
 > There is currently no stable release yet and there will be lots of breaking changes!
 
 ## Roadmap
+```mermaid
+timeline
+    section V1
+    Server managment 
+        : UI Elements 
+        : Api service
+    User attributes 
+        : Department 
+        : GeoPosition (Floor, Room, etc.)
+    User groups 
+        : UI Elements
+        : Permissions
+        : Acces to order based on group
+    section V2
+    coming up : ...
+```
+
 - [x] Set up PocketBase
 - [x] Create basic database layout (might need some tweaks)
 - [x] Create tables in PocketBase
