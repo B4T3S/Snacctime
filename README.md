@@ -21,11 +21,11 @@
 - [ ] Add Room information
 
 ## Design Philosphy
-- Text: `#EAE9FC` $\textcolor{#EAE9FC}{⛾}$
-- Background: `#140047` $\textcolor{#140047}{⛾}$
-- Primary: `#FCAD64` $\textcolor{#FCAD64}{⛾}$
-- Secondary: `#020024` $\textcolor{#020024}{⛾}$
-- Accent: `#FF808E` $\textcolor{#FF808E}{⛾}$
+- Text: `#EAE9FC` $\textcolor{#EAE9FC}{⬤}$
+- Background: `#140047` $\textcolor{#140047}{⬤}$
+- Primary: `#FCAD64` $\textcolor{#FCAD64}{⬤}$
+- Secondary: `#020024` $\textcolor{#020024}{⬤}$
+- Accent: `#FF808E` $\textcolor{#FF808E}{⬤}$
   
 [RealtimeColors pallette](https://www.realtimecolors.com/dashboard?colors=eae9fc-140047-fcad64-020024-ff808e&fonts=Poppins-Poppins)
 
