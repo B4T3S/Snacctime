@@ -34,6 +34,9 @@ timeline
         : UI Elements
         : Permissions
         : Acces to order based on group
+    Integrations
+        : Login with social apps
+        : Share orders via QR
 ```
 
 ## Design Philosphy
