@@ -7,10 +7,26 @@
 ## Roadmap
 ```mermaid
 timeline
+    title Roadmap
     section V1
-    Server managment 
+    Pocketbase ✔
+        : Setup ✔
+        : Create basic database layout ✔
+        : Create tables in PocketBase ✔
+    User
+        : Login UI ✔
+        : Creation UI
+    Functionality
+        : Create orders ✔
+        : Add article to order
+        : Complete order
+    Server managment
         : UI Elements 
         : Api service
+    Automation
+        : CI/CD tests
+        : CI/CD build
+    section V2
     User attributes 
         : Department 
         : GeoPosition (Floor, Room, etc.)
@@ -18,24 +34,7 @@ timeline
         : UI Elements
         : Permissions
         : Acces to order based on group
-    section V2
-    coming up : ...
 ```
-
-- [x] Set up PocketBase
-- [x] Create basic database layout (might need some tweaks)
-- [x] Create tables in PocketBase
-- [x] Setup login
-- [ ] Setup user creation
-- [ ] Setup CI/CD for android builds
-- [ ] Setup basic app functionality
-    - [x] Create orders
-    - [ ] Add articles to orders
-    - [ ] Complete Orders
-- [ ] Release V1 :tada:
-
-- [ ] Add Grouping system
-- [ ] Add Room information
 
 ## Design Philosphy
 - Text: `#EAE9FC` $\textcolor{#EAE9FC}{⬤}$
