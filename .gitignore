@@ -88,5 +88,6 @@ docker/*
 !docker/.env
 !docker/docker-compose.yaml
 !docker/Dockerfile
+!docker/pb_schema.json
 
 # End of https://www.toptal.com/developers/gitignore/api/ionic3,angular,visualstudiocode
