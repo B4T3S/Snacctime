@@ -17,7 +17,7 @@ __check_defined = \
 .PHONY: help
 help: ## (Default) Print listing of key targets with their descriptions.
 	@printf "\nSnacctime \033[92m<Makefile>\033[90m\n"
-	@printf "\n\033[33mUsage:\033[0m\n   make \033[92m[target]\033[90m [argumants]\033[0m\n"
+	@printf "\n\033[33mUsage:\033[0m\n   make \033[92m[target]\033[90m [arguments]\033[0m\n"
 	@grep -F -h "##" $(MAKEFILE_LIST) | grep -F -v grep -F | sed -e 's/\\$$//' | awk 'BEGIN {FS = ":*[[:space:]]*##[[:space:]]*"}; \
 	{ \
 		if($$2 == "") \
