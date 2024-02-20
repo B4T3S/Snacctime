@@ -16,7 +16,9 @@ import {
   IonItem,
   IonInput,
   IonButton,
+  ModalController,
 } from '@ionic/angular/standalone'
+import { RegisterModalComponent } from 'src/app/components/register-modal/register-modal.component'
 
 @Component({
   selector: 'app-login',
@@ -42,6 +44,7 @@ export class LoginPage implements ViewWillEnter {
   userService: UserService
   router: Router
   loadingController: LoadingController
+  modalController: ModalController
 
   username: string = ''
   password: string = ''
@@ -51,6 +54,7 @@ export class LoginPage implements ViewWillEnter {
     this.userService = inject(UserService)
     this.router = inject(Router)
     this.loadingController = inject(LoadingController)
+    this.modalController = inject(ModalController)
 
     if (this.userService.IsLoggedIn) {
       this.router.navigate(['/tabs/orders'])
@@ -78,6 +82,10 @@ export class LoginPage implements ViewWillEnter {
   }
 
   public async register() {
-    // TODO: Create modal for registration
+    const registerModal = await this.modalController.create({
+      component: RegisterModalComponent,
+    })
+
+    await registerModal.present()
   }
 }

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Register for Snacctime</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid style="height: 100%">
+    <ion-row
+      style="height: 100%"
+      class="ion-align-items-center ion-justify-content-center"
+    >
+      <ion-col sizeMd="5">
+        <ion-item class="ion-margin-bottom">
+          <ion-input
+            label="Username"
+            labelPlacement="floating"
+            (ionChange)="checkUsernameAvailability()"
+            [(ngModel)]="username"
+          ></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-bottom">
+          <ion-input
+            label="Email"
+            labelPlacement="floating"
+            type="email"
+            [(ngModel)]="email"
+            email
+            errorText="Invalid Email!"
+          ></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-bottom">
+          <ion-input
+            label="Password"
+            labelPlacement="floating"
+            type="password"
+            [(ngModel)]="password"
+            minlength="8"
+            helperText="At least 8 characters"
+          ></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-bottom">
+          <ion-input
+            label="Repeat password"
+            labelPlacement="floating"
+            type="password"
+            [(ngModel)]="passwordConfirm"
+            minlength="8"
+            helperText="Has to be the same as the password above"
+          ></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-bottom" *ngIf="errorText" color="danger">
+          {{ errorText }}
+        </ion-item>
+        <ion-button expand="block" (click)="register()" color="primary">
+          Register</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

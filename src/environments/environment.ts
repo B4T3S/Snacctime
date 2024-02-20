@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  pocketBaseUrl: 'http:localhost:815'
-};
+  pocketBaseUrl: 'http://localhost:815',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
