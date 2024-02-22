@@ -15,7 +15,7 @@ timeline
         : Create tables in PocketBase ✔
     User
         : Login UI ✔
-        : Creation UI
+        : Creation UI ✔
     Functionality
         : Create orders ✔
         : Add article to order
